@@ -6,6 +6,9 @@
   "repository": "git@github.com:Q00/api_server_boilerplate.git",
   "author": "Q00 <jqyu.lee@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
