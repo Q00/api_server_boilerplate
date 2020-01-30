@@ -1,0 +1,9 @@
+{
+  "name": "api_server_boilerplate",
+  "version": "1.0.0",
+  "description": "api server boilerplate",
+  "main": "index.js",
+  "repository": "git@github.com:Q00/api_server_boilerplate.git",
+  "author": "Q00 <jqyu.lee@gmail.com>",
+  "license": "MIT"
+}
