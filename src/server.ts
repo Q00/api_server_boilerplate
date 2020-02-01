@@ -10,6 +10,8 @@ useContainer(Container);
 const app = express();
 console.log(`Current NODE_ENV is ${process.env.NODE_ENV}`);
 
+app.use(express.static(__dirname + '/views'));
+
 useExpressServer(app, routingControllerOptions);
 export function runServer(host: string, port: number) {
   return new Promise((resolve, reject) => {
@@ -26,6 +28,13 @@ import { spec } from './utils/swagger';
 
 app.use(swaggerUi.serve);
 app.get('/swagger', swaggerUi.setup(spec));
+
+app.get('/', (_: Request, res: Response) => {
+  res.sendFile('./views/index.html');
+});
+app.get('/swagger.json', (_: Request, res: Response) => {
+  res.json(spec);
+});
 
 app.use((err: string, _req: Request, res: Response, _next: NextFunction) => {
   // The error id is attached to `res.sentry` to be returned
