@@ -4,6 +4,7 @@ import { Container } from 'typedi';
 import './utils/env';
 import { useContainer, useExpressServer } from 'routing-controllers';
 import { routingControllerOptions } from './utils/routingConfig';
+import swaggerUi from 'swagger-ui-express';
 
 useContainer(Container);
 const app = express();
@@ -20,6 +21,11 @@ export function runServer(host: string, port: number) {
     });
   });
 }
+
+import { spec } from './utils/swagger';
+
+app.use(swaggerUi.serve);
+app.get('/swagger', swaggerUi.setup(spec));
 
 app.use((err: string, _req: Request, res: Response, _next: NextFunction) => {
   // The error id is attached to `res.sentry` to be returned
