@@ -39,6 +39,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "redoc": "^2.0.0-rc.20",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.8.0",
     "routing-controllers-openapi": "^1.8.0",
