@@ -6,8 +6,6 @@
   "trailingComma": "all",
   "printWidth": 80,
   "arrowParens": "always",
-  "parser": "babel",
   "bracketSpacing": true,
-  "useTabs": false,
-  "htmlWhitespaceSensitivity": "strict"
+  "useTabs": false
 }

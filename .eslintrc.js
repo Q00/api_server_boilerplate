@@ -1,13 +1,24 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'eslint-plugin-prettier'],
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
   extends: [
-    // Airbnb style guide 적용
-    'airbnb-base',
-    // TypeScript ESLint recommanded style 적용
+    'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
-    'eslint-plugin-prettier',
+    'airbnb',
   ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint'],
   rules: {},
 };
