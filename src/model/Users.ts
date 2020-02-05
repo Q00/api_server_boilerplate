@@ -45,8 +45,4 @@ export class User extends BaseModel {
     (userAccount) => userAccount.user,
   )
   public userAccount!: UserAccount;
-
-  @IsDate()
-  @Column({ nullable: true, type: 'date', default: null })
-  public deletedAt?: Date | null;
 }

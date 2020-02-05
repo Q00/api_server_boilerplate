@@ -4,6 +4,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
   ValueTransformer,
+  Column,
 } from 'typeorm';
 import { IsInt, IsDate } from 'class-validator';
 
@@ -25,4 +26,8 @@ export abstract class BaseModel {
   @IsDate()
   @UpdateDateColumn()
   public updatedAt!: Date;
+
+  @IsDate()
+  @Column({ nullable: true, type: 'date', default: null })
+  public deletedAt?: Date | null;
 }
