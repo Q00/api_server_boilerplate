@@ -1,4 +1,4 @@
-import { Column, Entity, Unique, OneToOne } from 'typeorm';
+import { Column, Entity, Unique, OneToOne, OneToMany } from 'typeorm';
 import {
   IsInt,
   IsString,
@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 import { BaseModel } from './BaseModel';
 import { UserAccount } from './UserAccounts';
+import { ExampleBoard, ExampleBoardComment, ExampleBoardDepthComment } from '.';
 
 // you can add column in user model if you want
 
@@ -45,4 +46,22 @@ export class User extends BaseModel {
     (userAccount) => userAccount.user,
   )
   public userAccount!: UserAccount;
+
+  @OneToMany(
+    (_) => ExampleBoard,
+    (board) => board.user,
+  )
+  public normalBoards!: ExampleBoard[];
+
+  @OneToMany(
+    (_) => ExampleBoardComment,
+    (comment) => comment.user,
+  )
+  public normalBoardComments!: ExampleBoardComment[];
+
+  @OneToMany(
+    (_) => ExampleBoardDepthComment,
+    (comment) => comment.user,
+  )
+  public normalBoardDepthComments!: ExampleBoardDepthComment[];
 }
