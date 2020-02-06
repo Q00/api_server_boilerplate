@@ -38,15 +38,16 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "gts": "^1.1.2",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
     "ts-jest": "^25.1.0",
-    "typescript": "^3.7.5",
-    "gts": "^1.1.2"
+    "typescript": "^3.7.5"
   },
   "dependencies": {
+    "class-transformer": "^0.2.3",
     "class-validator": "^0.11.0",
     "class-validator-jsonschema": "^1.3.1",
     "cors": "^2.8.5",
