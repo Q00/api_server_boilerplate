@@ -1,5 +1,5 @@
 import { Service, Container } from 'typedi';
-import { BaseCommentService, ICommentDTO } from './BaseCommentService';
+import { BaseCommentService, IcommentDTO } from './BaseCommentService';
 import { ExampleBoard, ExampleBoardComment } from '../model';
 import { ExampleBoardService } from './ExampleBoardService';
 
@@ -11,14 +11,14 @@ export class ExampleBoardCommentService extends BaseCommentService<
     super(ExampleBoardComment);
   }
 
-  public async save(comment: ICommentDTO): Promise<ExampleBoardComment> {
+  async save(comment: IcommentDTO): Promise<ExampleBoardComment> {
     const normalBoardService = Container.get(ExampleBoardService);
     const normalBoard = (await normalBoardService.getById(
       comment.boardId,
     )) as ExampleBoard;
-    return await this.genericRepository.save({
+    return this.genericRepository.save({
       comment: comment.comment,
-      normalBoard: normalBoard,
+      normalBoard,
       user: comment.user,
     });
   }

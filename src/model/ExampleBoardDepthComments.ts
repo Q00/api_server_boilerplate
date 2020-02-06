@@ -12,7 +12,7 @@ export class ExampleBoardDepthComment extends BaseComment {
     (comment) => comment.id,
     { nullable: false },
   )
-  public ref!: ExampleBoardComment;
+  ref!: ExampleBoardComment;
 
   @IsObject()
   @ManyToOne(
@@ -20,5 +20,5 @@ export class ExampleBoardDepthComment extends BaseComment {
     (user) => user.id,
     { nullable: false },
   )
-  public user!: User;
+  user!: User;
 }

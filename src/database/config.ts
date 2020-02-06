@@ -1,11 +1,11 @@
 import path from 'path';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-import DatabaseNamingStrategy from './NamingStrategy';
+import { NamingStrategy } from './NamingStrategy';
 import '../utils/env';
 const typeOrmConfig: PostgresConnectionOptions = {
   type: 'postgres',
   host: process.env.DB_HOST,
-  namingStrategy: new DatabaseNamingStrategy(),
+  namingStrategy: new NamingStrategy(),
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PW,

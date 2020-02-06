@@ -3,7 +3,7 @@ import { BaseService, ObjectType, listForm } from './BaseService';
 import { BaseBoard } from '../model/BaseBoard';
 import { Like, IsNull } from 'typeorm';
 
-export interface IBoardDTO {
+export interface IboardDTO {
   title: string;
   content: string;
   reportCount: number;
@@ -19,16 +19,16 @@ export abstract class BaseBoardService<T extends BaseBoard> extends BaseService<
     super(repo);
   }
 
-  public async getBoardList(page: number, query?: string): listForm<T> {
+  async getBoardList(page: number, query?: string): listForm<T> {
     if (Number.isNaN(page) || page === undefined) {
       page = 1;
     }
     const size = 10;
     const begin = (page - 1) * size;
 
-    let board_list;
+    let boardList;
     if (query) {
-      board_list = await this.getByWhere(
+      boardList = await this.getByWhere(
         [
           {
             title: Like(`%${query}%`),
@@ -44,16 +44,16 @@ export abstract class BaseBoardService<T extends BaseBoard> extends BaseService<
         size,
       );
     } else {
-      board_list = await this.list(['user'], begin, size);
+      boardList = await this.list(['user'], begin, size);
     }
 
-    return { array: board_list[0], total: board_list[1] };
+    return { array: boardList[0], total: boardList[1] };
   }
-  public async updateReportCount(id: number): Promise<BaseBoard> {
-    const board = await (<Promise<T>>this.getById(id));
+  async updateReportCount(id: number): Promise<BaseBoard> {
+    const board = await (this.getById(id) as Promise<T>);
     const newBoard: Pick<BaseBoard, 'reportCount'> = {
       reportCount: board.reportCount + 1,
     };
-    return this.genericRepository.save({ ...board, ...newBoard } as any);
+    return this.genericRepository.save({ ...board, ...newBoard } as object);
   }
 }

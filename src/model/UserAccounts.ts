@@ -9,11 +9,11 @@ import { Provider } from './Enum';
 export class UserAccount extends BaseModel {
   @IsEnum(Provider)
   @Column({ type: 'enum', enum: Provider })
-  public provider!: Provider;
+  provider!: Provider;
 
   @IsString()
   @Column({ length: 50 })
-  public clientId!: string;
+  clientId!: string;
 
   @IsObject()
   @OneToOne(
@@ -23,5 +23,5 @@ export class UserAccount extends BaseModel {
     { nullable: true },
   )
   @JoinColumn()
-  public user?: User;
+  user?: User;
 }

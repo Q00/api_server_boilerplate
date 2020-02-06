@@ -14,74 +14,71 @@ export abstract class BaseService<T extends BaseModel> {
     this.repo = repo;
   }
 
-  public async list(
-    relations?: Array<string>,
-    skip?: number,
-    take?: number,
-  ): listForm<T> {
-    if ((take || take == 0) && (skip || skip == 0)) {
+  async list(relations?: string[], skip?: number, take?: number): listForm<T> {
+    if ((take || take === 0) && (skip || skip === 0)) {
       const list = await this.genericRepository.findAndCount({
         order: { createdAt: 'DESC' },
         where: { deletedAt: IsNull() },
-        relations: relations,
-        take: take,
-        skip: skip,
+        relations,
+        take,
+        skip,
       });
       return list;
     } else {
-      const blist = await (<Promise<T[]>>(
-        this.genericRepository.find({ relations: relations })
-      ));
+      const blist = await (this.genericRepository.find({
+        relations,
+      }) as Promise<T[]>);
 
       const array = [blist, blist.length];
       return array;
     }
   }
 
-  public async getById(id: number, relations?: Array<string>): Promise<T> {
-    return await (<Promise<T>>this.genericRepository.findOne({
-      where: { id: id },
-      relations: relations,
-    }));
+  async getById(id: number, relations?: string[]): Promise<T> {
+    return this.genericRepository.findOne({
+      where: { id },
+      relations,
+    }) as Promise<T>;
   }
 
-  public async getByWhere(
-    where: Array<Object> | Object,
-    relations?: Array<string>,
+  async getByWhere(
+    where: [] | {},
+    relations?: string[],
     skip?: number,
     take?: number,
   ): listForm<T> {
-    if ((take || take == 0) && (skip || skip == 0)) {
+    if ((take || take === 0) && (skip || skip === 0)) {
       const list = await this.genericRepository.findAndCount({
-        where: where,
+        where,
         order: { createdAt: 'DESC' },
-        relations: relations,
-        take: take,
-        skip: skip,
+        relations,
+        take,
+        skip,
       });
 
       return list;
     } else {
-      return await (<Promise<T[]>>this.genericRepository.find({
-        where: where,
-        relations: relations,
-      }));
+      const get = await this.genericRepository.find({
+        where,
+        relations,
+      });
+      return get;
     }
   }
 
-  public async hardDelete(id: number): Promise<DeleteResult> {
-    return await getConnection()
+  async hardDelete(id: number): Promise<DeleteResult> {
+    return getConnection()
       .createQueryBuilder()
       .delete()
       .from(this.repo)
-      .where('id = :id', { id: id })
+      .where('id = :id', { id })
       .execute();
   }
 
-  public async softDelete(id: number): Promise<T> {
-    const oldOne = await (<Promise<T>>this.getById(id));
+  async softDelete(id: number): Promise<T> {
+    const oldOne = await (this.getById(id) as Promise<T>);
     const newOne: Partial<T> = {};
     newOne.deletedAt = new Date();
-    return this.genericRepository.save({ ...oldOne, ...newOne } as any);
+    return this.genericRepository.save({ ...oldOne, ...newOne } as object);
   }
 }

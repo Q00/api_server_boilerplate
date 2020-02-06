@@ -18,50 +18,50 @@ import { ExampleBoard, ExampleBoardComment, ExampleBoardDepthComment } from '.';
 export class User extends BaseModel {
   @Column({ length: 45 })
   @IsInt()
-  public nickname!: string; // 닉네임
+  nickname!: string; // 닉네임
 
   @Column({ length: 10 })
   @IsString()
-  public name!: string;
+  name!: string;
 
   @Column({ type: 'date' })
   @IsDate()
-  public birthday!: Date;
+  birthday!: Date;
 
   @Column({ length: 200 })
   @IsUrl()
-  public profile!: string;
+  profile!: string;
 
   @Column({ length: 25 })
   @IsPhoneNumber('KR')
-  public phone!: string;
+  phone!: string;
 
   @Column({ length: 35 })
   @IsEmail()
-  public email!: string;
+  email!: string;
 
   @OneToOne(
     // eslint-disable-next-line no-unused-vars
     (_) => UserAccount,
     (userAccount) => userAccount.user,
   )
-  public userAccount!: UserAccount;
+  userAccount!: UserAccount;
 
   @OneToMany(
     (_) => ExampleBoard,
     (board) => board.user,
   )
-  public normalBoards!: ExampleBoard[];
+  normalBoards!: ExampleBoard[];
 
   @OneToMany(
     (_) => ExampleBoardComment,
     (comment) => comment.user,
   )
-  public normalBoardComments!: ExampleBoardComment[];
+  normalBoardComments!: ExampleBoardComment[];
 
   @OneToMany(
     (_) => ExampleBoardDepthComment,
     (comment) => comment.user,
   )
-  public normalBoardDepthComments!: ExampleBoardDepthComment[];
+  normalBoardDepthComments!: ExampleBoardDepthComment[];
 }

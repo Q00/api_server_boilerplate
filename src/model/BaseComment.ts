@@ -8,9 +8,9 @@ export abstract class BaseComment extends BaseModel {
   @Column({ length: 50 })
   @IsString()
   @MaxLength(50)
-  public comment!: string;
+  comment!: string;
 
   @Column({ default: 0 })
   @IsInt()
-  public reportCount!: number;
+  reportCount!: number;
 }

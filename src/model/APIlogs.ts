@@ -8,24 +8,24 @@ import { Method } from './Enum';
 export class APILog extends BaseModel {
   @IsString()
   @Column({ type: 'text', nullable: true })
-  public log?: string;
+  log?: string;
 
   @IsEnum(Method)
   @Column({ type: 'enum', enum: Method })
-  public method!: Method;
+  method!: Method;
 
   @IsUrl()
   @Column({ type: 'text' })
-  public url!: string;
+  url!: string;
 
   @IsObject()
   @ManyToOne(
     (_) => User,
     (user) => user.id,
   )
-  public user!: User;
+  user!: User;
 
   @IsInt()
   @Column()
-  public responseTime!: number;
+  responseTime!: number;
 }
