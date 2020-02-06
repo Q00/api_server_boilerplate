@@ -3,7 +3,7 @@ import { User } from '../model';
 import { BaseService } from './BaseService';
 import { UserAccountService } from './UserAccountService';
 
-export interface IUserDTO {
+export interface IuserDTO {
   nickname: string;
   name: string;
   birthday: Date;
@@ -20,13 +20,13 @@ export class UserService extends BaseService<User> {
     this.userAccountService = Container.get(UserAccountService);
   }
 
-  public async getById(userId: number): Promise<User> {
+  async getById(userId: number): Promise<User> {
     const relations = ['exampleBoards', 'userAccount'];
-    return await super.getById(userId, relations);
+    return super.getById(userId, relations);
   }
 
-  public async createOrUpdate(
-    user: Partial<IUserDTO>,
+  async createOrUpdate(
+    user: Partial<IuserDTO>,
     clientId: string,
   ): Promise<User> {
     const payload: Partial<User> = {};
@@ -50,7 +50,7 @@ export class UserService extends BaseService<User> {
     }
     const tempAccount = await this.userAccountService.getByClientId(clientId);
     if (tempAccount.user) {
-      return await this.genericRepository.save({
+      return this.genericRepository.save({
         ...tempAccount.user,
         ...payload,
       });

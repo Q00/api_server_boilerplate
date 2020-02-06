@@ -13,13 +13,13 @@ export class ExampleBoardComment extends BaseComment {
     (board) => board.id,
     { nullable: false },
   )
-  public exampleBoard!: ExampleBoard;
+  exampleBoard!: ExampleBoard;
 
   @OneToMany(
     (_) => ExampleBoardDepthComment,
     (comment) => comment.ref,
   )
-  public depthComments!: ExampleBoardDepthComment[];
+  depthComments!: ExampleBoardDepthComment[];
 
   @ManyToOne(
     (_) => User,
@@ -27,5 +27,5 @@ export class ExampleBoardComment extends BaseComment {
     { nullable: false },
   )
   @IsObject()
-  public user!: User;
+  user!: User;
 }

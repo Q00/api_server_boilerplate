@@ -3,7 +3,7 @@ import { UserAccount } from '../model';
 import { BaseService } from './BaseService';
 import { Provider } from '../model/Enum';
 import { InternalServerError } from 'routing-controllers';
-export interface IUserAccountDTO {
+export interface IuserAccountDTO {
   provider: Provider;
   clientId: string;
 }
@@ -14,9 +14,7 @@ export class UserAccountService extends BaseService<UserAccount> {
     super(UserAccount);
   }
 
-  public async getOrNewAccount(
-    tempUser: IUserAccountDTO,
-  ): Promise<UserAccount> {
+  async getOrNewAccount(tempUser: IuserAccountDTO): Promise<UserAccount> {
     const user = await this.genericRepository.findOne({
       where: { provider: tempUser.provider, clientId: tempUser.clientId },
       relations: ['user'],
@@ -25,25 +23,25 @@ export class UserAccountService extends BaseService<UserAccount> {
     if (user) {
       return user;
     }
-    return await this.genericRepository.save({
+    return this.genericRepository.save({
       provider: tempUser.provider,
       clientId: tempUser.clientId,
     });
   }
 
-  public getByClientId(clientId: string): Promise<UserAccount> {
+  getByClientId(clientId: string): Promise<UserAccount> {
     return this.genericRepository.findOne({
       relations: ['user'],
-      where: { clientId: clientId },
+      where: { clientId },
     }) as Promise<UserAccount>;
   }
 
-  public async update(
+  async update(
     userAccountId: number,
     user: Partial<UserAccount>,
   ): Promise<void> {
     try {
-      await this.genericRepository.update(userAccountId, { user: user });
+      await this.genericRepository.update(userAccountId, { user });
     } catch (err) {
       throw new InternalServerError(err);
     }

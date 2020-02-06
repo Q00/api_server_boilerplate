@@ -15,6 +15,7 @@ app.use(express.static(__dirname + '/views'));
 useExpressServer(app, routingControllerOptions);
 export function runServer(host: string, port: number) {
   return new Promise((resolve, reject) => {
+    // tslint:disable-next-line: no-any
     app.listen(port, host, (err: any) => {
       if (err) {
         reject(err);

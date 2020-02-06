@@ -3,7 +3,7 @@ import { APILog, User } from '../model';
 import { Service } from 'typedi';
 import { Method } from '../model/Enum';
 
-export interface IApiLog {
+export interface IapiLog {
   user: User;
   url: string;
   method: Method;
@@ -17,7 +17,7 @@ export class ApiLogService extends BaseService<APILog> {
     super(APILog);
   }
 
-  public async save(apiLog: IApiLog): Promise<APILog> {
+  async save(apiLog: IapiLog): Promise<APILog> {
     return this.genericRepository.save({
       user: apiLog.user,
       log: apiLog?.log,

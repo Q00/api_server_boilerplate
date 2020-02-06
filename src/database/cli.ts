@@ -9,7 +9,7 @@ async function getDatabase(): Promise<Connection> {
   try {
     return getConnection();
   } catch (e) {
-    return await createConnection(typeOrmConfig);
+    return createConnection(typeOrmConfig);
   }
 }
 

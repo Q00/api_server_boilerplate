@@ -7,13 +7,13 @@ import { BaseModel } from './BaseModel';
 export abstract class BaseBoard extends BaseModel {
   @Column({ length: 50 })
   @IsString()
-  public title!: string;
+  title!: string;
 
   @IsString()
   @Column({ type: 'text' })
-  public content!: string;
+  content!: string;
 
   @IsInt()
   @Column({ default: 0 })
-  public reportCount!: number;
+  reportCount!: number;
 }

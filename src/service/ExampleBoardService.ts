@@ -1,9 +1,9 @@
 import { Service } from 'typedi';
 import { BaseBoardService } from './BaseBoardService';
-import { IBoardDTO } from './BaseBoardService';
+import { IboardDTO } from './BaseBoardService';
 import { ExampleBoard, User } from '../model';
 
-export interface IExampleBoardDTO extends IBoardDTO {
+export interface IexampleBoardDTO extends IboardDTO {
   user: User;
 }
 
@@ -13,8 +13,8 @@ export class ExampleBoardService extends BaseBoardService<ExampleBoard> {
     super(ExampleBoard);
   }
 
-  public async save(
-    board: Pick<IExampleBoardDTO, 'title' | 'content' | 'user'>,
+  async save(
+    board: Pick<IexampleBoardDTO, 'title' | 'content' | 'user'>,
   ): Promise<ExampleBoard> {
     return this.genericRepository.save({
       title: board.title,
@@ -23,7 +23,7 @@ export class ExampleBoardService extends BaseBoardService<ExampleBoard> {
     });
   }
 
-  public async getByUserId(userId: number): Promise<ExampleBoard[]> {
+  async getByUserId(userId: number): Promise<ExampleBoard[]> {
     return super.getByWhere({ user: userId }, [
       /*"normalBoardComments"*/ 'user',
     ]) as Promise<ExampleBoard[]>;

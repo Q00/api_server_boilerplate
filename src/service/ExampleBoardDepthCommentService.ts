@@ -1,5 +1,5 @@
 import { Service, Container } from 'typedi';
-import { BaseCommentService, IDepthCommentDTO } from './BaseCommentService';
+import { BaseCommentService, IdepthCommentDTO } from './BaseCommentService';
 import { ExampleBoardDepthComment } from '../model';
 import { ExampleBoardCommentService } from './ExampleBoardCommentService';
 
@@ -11,8 +11,8 @@ export class ExampleBoardDepthCommentService extends BaseCommentService<
     super(ExampleBoardDepthComment);
   }
 
-  public async createOrUpdate(
-    depthComment: IDepthCommentDTO,
+  async createOrUpdate(
+    depthComment: IdepthCommentDTO,
   ): Promise<ExampleBoardDepthComment> {
     const normalBoardCommentService = Container.get(ExampleBoardCommentService);
     const parentComment = await normalBoardCommentService.getById(

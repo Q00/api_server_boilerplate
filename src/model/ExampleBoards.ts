@@ -12,12 +12,12 @@ export class ExampleBoard extends BaseBoard {
     (user) => user.id,
     { nullable: false },
   )
-  public user!: User;
+  user!: User;
 
   @IsObject()
   @OneToMany(
     (_) => ExampleBoardComment,
     (comment) => comment.exampleBoard,
   )
-  public comments!: ExampleBoardComment[];
+  comments!: ExampleBoardComment[];
 }
