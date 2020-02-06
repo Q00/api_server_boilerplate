@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['airbnb_base'],
+  extends: ['./node_modules/gts'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
