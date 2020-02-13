@@ -1,5 +1,6 @@
 import { apiClient } from '../utils/apiClient';
 import { AxiosInstance } from 'axios';
+import { Authentication } from '../utils/Authenticate';
 
 export abstract class BaseProvider {
   protected accessToken: string;
@@ -23,5 +24,9 @@ export abstract class BaseProvider {
 
   getInstance() {
     return this.instance;
+  }
+
+  async generateToken(userId: number) {
+    return `Bearer ${Authentication.generateToken(userId)}`;
   }
 }

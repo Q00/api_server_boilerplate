@@ -1,5 +1,4 @@
 import { BaseProvider } from './BaseProvider';
-import { Authentication } from '../utils/Authenticate';
 import { Service } from 'typedi';
 
 @Service()
@@ -17,9 +16,5 @@ export class KaKaoProvider extends BaseProvider {
     );
 
     return response?.data.id;
-  }
-
-  async generateToken(userId: number) {
-    return `Bearer ${Authentication.generateToken(userId)}`;
   }
 }
