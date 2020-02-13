@@ -12,8 +12,8 @@ const typeOrmConfig: PostgresConnectionOptions = {
   database: process.env.DATABASE,
   synchronize: false,
   logging: false,
-  entities: [`${path.join(__dirname, '..', 'models')}/**.[tj]s`],
-  migrations: [`${path.join(__dirname, '..', 'models')}/migration/**.[tj]s`],
+  entities: [`${path.join(__dirname, '..', 'model')}/**.[tj]s`],
+  migrations: [`${path.join(__dirname, '..', 'model')}/migration/**.[tj]s`],
 };
 
 export { typeOrmConfig };

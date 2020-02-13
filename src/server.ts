@@ -10,7 +10,7 @@ useContainer(Container);
 const app = express();
 console.log(`Current NODE_ENV is ${process.env.NODE_ENV}`);
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/view'));
 
 useExpressServer(app, routingControllerOptions);
 export function runServer(host: string, port: number) {
@@ -31,7 +31,7 @@ app.use(swaggerUi.serve);
 app.get('/swagger', swaggerUi.setup(spec));
 
 app.get('/', (_: Request, res: Response) => {
-  res.sendFile('./views/index.html');
+  res.sendFile('./view/index.html');
 });
 app.get('/swagger.json', (_: Request, res: Response) => {
   res.json(spec);
