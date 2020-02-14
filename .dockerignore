@@ -1,0 +1,15 @@
+### Git ### 
+.git
+.gitignore
+
+### not production code ###
+**/*.md
+LICENSE
+yarn-error.log
+src/test
+nodemon.json
+node_modules
+*.js
+
+###  VisualStudioCode ###
+.vscode/
