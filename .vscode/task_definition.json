@@ -1,0 +1,65 @@
+{
+  "ipcMode": "task",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/ecs/your-group",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 3000
+        }
+      ],
+      "command": [],
+      "linuxParameters": [],
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        }
+      ],
+      "resourceRequirements": [],
+      "ulimits": [],
+      "dnsServers": [],
+      "mountPoints": [],
+      "secrets": [],
+      "dockerSecurityOptions": [],
+      "memoryReservation": 512,
+      "volumesFrom": [],
+      "stopTimeout": 2,
+      "image": "your ecr repository image url",
+      "startTimeout": 2,
+      "dependsOn": [],
+      "workingDirectory": "/usr/src/app",
+      "interactive": true,
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost/ || exit 1"],
+        "interval": 300,
+        "timeout": 30,
+        "retries": 3,
+        "startPeriod": 0
+      },
+      "essential": true,
+      "links": [],
+      "pseudoTerminal": true,
+      "name": "api-server-boilerplate"
+    }
+  ],
+  "placementConstraints": [],
+  "family": "your family name",
+  "pidMode": "task",
+  "requiresCompatibilities": ["EC2"],
+  "networkMode": "bridge",
+  "inferenceAccelerators": [],
+  "volumes": []
+}
