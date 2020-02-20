@@ -10,6 +10,7 @@
     "db:dev": "cp .env.development .env && NODE_ENV=development ts-node ./src/database/cli",
     "db:sync": "node ./dist/database/cli sync",
     "build": "tsc",
+    "test": "jest",
     "dev": "cp .env.development .env && NODE_ENV=development nodemon",
     "start": "cp .env.production .env&& NODE_ENV=production node ./dist",
     "check": "gts check",
