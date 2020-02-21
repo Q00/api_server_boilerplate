@@ -1,10 +1,4 @@
----
-name: Pull request
-about: Pull request for this project
-title: ''
-labels: 'CodeReview'
-assignees: 'Q00'
----
+## thank you for your pull request! Please write down according to form below
 
 ## Purpose
 
