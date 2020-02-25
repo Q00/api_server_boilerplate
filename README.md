@@ -93,7 +93,6 @@ export abstract class BaseBoard extends BaseModel {
   @Column({ default: 0 })
   reportCount!: number;
 }
-
 ```
 
 #### Base comment model
@@ -111,7 +110,6 @@ export abstract class BaseComment extends BaseModel {
   @IsInt()
   reportCount!: number;
 }
-
 ```
 
 ### service
@@ -182,7 +180,7 @@ export abstract class BaseProvider {
     this.accessToken = '';
     this.instance = null;
   }
-   setToken(accessToken: string) {
+  setToken(accessToken: string) {
     this.accessToken = accessToken;
   }
 
@@ -272,7 +270,7 @@ This module use [routing-controllers](https://github.com/typestack/routing-contr
 
 This project use [typeorm](https://typeorm.io/) and connect with [Postgres](https://www.postgresql.org/).
 
-#### Naming Strategy 
+#### Naming Strategy
 
 using snake case.
 
@@ -348,7 +346,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## 🔍 Relase note && Change log
 
-Release note and change log are exist in CHANGELOG(./CHANGELOG.md)
+Release note and change log are exist in [CHANGELOG](./CHANGELOG.md)
 
 ## Show your support
 
