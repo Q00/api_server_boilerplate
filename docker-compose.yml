@@ -1,0 +1,37 @@
+version: '3'
+services:
+  database:
+    image: bitnami/postgresql:11-debian-9
+    restart: on-failure
+    ports:
+      - '0.0.0.0:5432:5432'
+    environment:
+      - POSTGRESQL_PASSWORD=testpasswd
+      - POSTGRESQL_USERNAME=testuser
+      - POSTGRESQL_DATABASE=testdb
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=repuser
+      - POSTGRESQL_REPLICATION_PASSWORD=reppassword
+    networks:
+      pple2net:
+        ipv4_address: 172.16.24.2
+  server:
+    build:
+      context: .
+      dockerfile: ./dev.dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/boilerplate/web'
+    depends_on:
+      - database
+    command: 'yarn dev'
+    networks:
+      pple2net:
+        ipv4_address: 172.16.24.3
+networks:
+  pple2net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.24.0/24
