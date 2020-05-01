@@ -24,7 +24,7 @@ async function runMigration(db: Connection) {
 async function main() {
   const { argv } = yargs;
   if (!argv._.length) {
-    signale.error('not enoght length');
+    signale.error('not enough length');
     return;
   }
   const order = argv._[0];
